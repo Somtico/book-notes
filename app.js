@@ -1,5 +1,6 @@
 import express from "express";
 import pool from "./db.js";
+import axios from "axios";
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,10 @@ pool.query("SELECT NOW()", (err, res) => {
   } else {
     console.log("Database connected at:", res.rows[0].now);
   }
+});
+
+app.get("/", (req, res) => {
+  res.render("index.ejs");
 });
 
 app.listen(port, () => {
